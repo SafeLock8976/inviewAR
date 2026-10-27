@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SnapEDesign - Project Documentation & User Guide</title>
+  <style>
+    :root {
+      --primary: #4f46e5;
+      --primary-light: #eef2ff;
+      --dark: #0f172a;
+      --gray: #64748b;
+      --light-gray: #f8fafc;
+      --border: #e2e8f0;
+      --success: #16a34a;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: #1e293b;
+      background-color: #f1f5f9;
+      line-height: 1.6;
+      padding: 30px 15px;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 45px 50px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+      border: 1px solid var(--border);
+    }
+
+    .print-btn-bar {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 25px;
+    }
+
+    .btn-print {
+      background: linear-gradient(135deg, #4f46e5, #6366f1);
+      color: #ffffff;
+      border: none;
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+      transition: all 0.2s ease;
+    }
+
+    .btn-print:hover {
+      background: #4338ca;
+      transform: translateY(-1px);
+    }
+
+    header {
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 25px;
+      margin-bottom: 30px;
+    }
+
+    .tag {
+      display: inline-block;
+      background: var(--primary-light);
+      color: var(--primary);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      color: var(--dark);
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      color: var(--gray);
+    }
+
+    h2 {
+      font-size: 1.35rem;
+      color: var(--dark);
+      margin: 30px 0 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-left: 4px solid var(--primary);
+      padding-left: 12px;
+    }
+
+    h3 {
+      font-size: 1.05rem;
+      color: #334155;
+      margin: 18px 0 8px;
+    }
+
+    p {
+      margin-bottom: 14px;
+      color: #334155;
+      font-size: 0.96rem;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin: 18px 0;
+    }
+
+    .card {
+      background: var(--light-gray);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px;
+    }
+
+    .card h4 {
+      color: var(--dark);
+      font-size: 1rem;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card p {
+      font-size: 0.88rem;
+      color: var(--gray);
+      margin-bottom: 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 18px 0;
+      font-size: 0.92rem;
+    }
+
+    th, td {
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      text-align: left;
+    }
+
+    th {
+      background: #f8fafc;
+      color: var(--dark);
+      font-weight: 600;
+    }
+
+    tr:nth-child(even) td {
+      background: #fafafa;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+
+    .badge-frontend { background: #e0f2fe; color: #0284c7; }
+    .badge-3d { background: #fef3c7; color: #b45309; }
+    .badge-network { background: #dcfce7; color: #15803d; }
+    .badge-tooling { background: #f3e8ff; color: #7e22ce; }
+
+    .step-box {
+      background: #ffffff;
+      border-left: 3px solid var(--primary);
+      padding: 14px 18px;
+      margin-bottom: 14px;
+      border-radius: 0 10px 10px 0;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      border-top: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .step-num {
+      font-weight: 700;
+      color: var(--primary);
+      margin-right: 6px;
+    }
+
+    code {
+      background: #f1f5f9;
+      color: #0f172a;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: Consolas, Monaco, 'Courier New', Courier, monospace;
+      font-size: 0.88rem;
+    }
+
+    .callout {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 10px;
+      padding: 14px 18px;
+      margin: 18px 0;
+      font-size: 0.92rem;
+      color: #1e40af;
+    }
+
+    .callout-title {
+      font-weight: 700;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    footer {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--gray);
+      font-size: 0.85rem;
+    }
+
+    @media print {
+      body {
+        background: #ffffff;
+        padding: 0;
+      }
+      .container {
+        border: none;
+        box-shadow: none;
+        padding: 0;
+        max-width: 100%;
+      }
+      .print-btn-bar {
+        display: none;
+      }
+      h2 {
+        page-break-after: avoid;
+      }
+      .step-box, .card, table {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="print-btn-bar">
+      <button class="btn-print" onclick="window.print()">
+        🖨️ Save as PDF / Print Document
+      </button>
+    </div>
+
+    <header>
+      <span class="tag">Technical & User Documentation</span>
+      <h1>SnapEDesign (Snap-e-Design)</h1>
+      <p class="subtitle">Next-Gen Web-Based Interior Floor Planner & Augmented Reality (AR) Studio</p>
+    </header>
+
+    <section>
+      <h2>1. Project Overview</h2>
+      <p>
+        <strong>SnapEDesign</strong> is an interactive web application that bridges 2D interior space planning with real-time 3D Augmented Reality (AR). It allows homeowners, designers, and clients to design room layouts and project photorealistic 3D furniture models directly into their physical room using mobile phone cameras.
+      </p>
+
+      <div class="card-grid">
+        <div class="card">
+          <h4>📐 2D Floor Planner</h4>
+          <p>Drag-and-drop 2D and 3D furniture into an interactive grid canvas. Move, rotate 45°, scale, and customize wall paint tinting in real time.</p>
+        </div>
+        <div class="card">
+          <h4>📱 Real Room AR Camera</h4>
+          <p>Streams live video feed from device rear camera, overlays 3D models with 360° Pitch/Yaw/Roll rotation controls, and supports full WebXR AR.</p>
+        </div>
+        <div class="card">
+          <h4>🤝 Designer Marketplace</h4>
+          <p>Connects clients with interior designers to post room requests, review project estimates, submit proposals, and save portfolio snapshots.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>2. Software & Technologies Used</h2>
+      <p>The project is built entirely on modern web standards requiring zero app-store installations:</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Software / Library</th>
+            <th>Type</th>
+            <th>Version / Source</th>
+            <th>Role in This Project</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>React</strong></td>
+            <td><span class="badge badge-frontend">Frontend</span></td>
+            <td>v19</td>
+            <td>Component architecture, real-time UI state, canvas interactions, and screen routing.</td>
+          </tr>
+          <tr>
+            <td><strong>Vite</strong></td>
+            <td><span class="badge badge-tooling">Build Tool</span></td>
+            <td>v8</td>
+            <td>High-performance development server, Hot Module Replacement (HMR), and host routing.</td>
+          </tr>
+          <tr>
+            <td><strong>@google/model-viewer</strong></td>
+            <td><span class="badge badge-3d">3D & AR Engine</span></td>
+            <td>v4.2.0 (Google)</td>
+            <td>Web component rendering 3D GLB/glTF models, lighting, shadows, and WebXR / ARCore integration.</td>
+          </tr>
+          <tr>
+            <td><strong>WebXR / ARCore</strong></td>
+            <td><span class="badge badge-3d">Browser AR API</span></td>
+            <td>W3C WebXR Standard</td>
+            <td>Powers "In View AR" mode with floor detection and camera passthrough on mobile devices.</td>
+          </tr>
+          <tr>
+            <td><strong>getUserMedia API</strong></td>
+            <td><span class="badge badge-frontend">Browser Web API</span></td>
+            <td>HTML5 MediaStream</td>
+            <td>Accesses mobile rear and front cameras for in-browser room background projection.</td>
+          </tr>
+          <tr>
+            <td><strong>Cloudflare Tunnel</strong></td>
+            <td><span class="badge badge-network">Secure Tunnel</span></td>
+            <td>cloudflared</td>
+            <td>Provides instant, public, valid SSL HTTPS endpoints for mobile device testing without firewall issues.</td>
+          </tr>
+          <tr>
+            <td><strong>Lucide React</strong></td>
+            <td><span class="badge badge-frontend">UI Icons</span></td>
+            <td>v1.16</td>
+            <td>Lightweight, clean SVG vector icon system for tools, furniture categories, and navigation.</td>
+          </tr>
+          <tr>
+            <td><strong>Modern Vanilla CSS</strong></td>
+            <td><span class="badge badge-frontend">Styling</span></td>
+            <td>CSS3</td>
+            <td>Custom dark glassmorphic UI, responsive layouts, floating sliders, and dynamic room tint overlays.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>3. How to Connect & Run the Project</h2>
+
+      <h3>A. Running on Your Computer (Development)</h3>
+      <div class="step-box">
+        <span class="step-num">Step 1:</span> Open terminal in the project directory: <code>c:\Users\sundhar\OneDrive\Desktop\c</code>.
+      </div>
+      <div class="step-box">
+        <span class="step-num">Step 2:</span> Start the dev server using cmd: <code>cmd /c npm run dev</code>.
+      </div>
+      <div class="step-box">
+        <span class="step-num">Step 3:</span> Open your computer browser at: <code>http://localhost:5173/</code>.
+      </div>
+
+      <h3>B. Connecting & Running on Your Mobile Phone</h3>
+      <div class="callout">
+        <div class="callout-title">🔒 Why HTTPS is Required for Mobile:</div>
+        Mobile browsers (Google Chrome & Safari) strictly disable camera access (<code>navigator.mediaDevices</code>) on insecure <code>http://</code> connections. An HTTPS connection is essential for camera and AR permissions to function.
+      </div>
+
+      <div class="step-box">
+        <span class="step-num">Method 1 (Recommended for Mobile AR/Camera):</span>
+        <strong>Public Secure Cloudflare Tunnel (HTTPS)</strong><br>
+        Open the active secure URL on your phone's browser (Chrome or Safari):<br>
+        <code>https://introducing-caps-bar-tired.trycloudflare.com</code><br>
+        <em>(Works anywhere over 4G/5G/Wi-Fi with zero setup; direct HTTPS with full camera & AR support).</em>
+      </div>
+
+      <div class="step-box">
+        <span class="step-num">Method 2:</span>
+        <strong>Local Wi-Fi Network</strong><br>
+        Connect phone to the same Wi-Fi as your PC, then navigate to: <code>http://10.235.209.3:5173</code>.<br>
+        <em>Note: Local HTTP may block live camera permissions on some mobile browsers unless configured in chrome://flags.</em>
+      </div>
+    </section>
+
+    <section>
+      <h2>4. How to Use the App (Feature Guide)</h2>
+
+      <h3>1. Design Space (Floor Planner Canvas)</h3>
+      <ul style="padding-left: 20px; font-size: 0.95rem; color: #334155; margin-bottom: 15px;">
+        <li><strong>Drag & Drop Furniture:</strong> Drag items from the left sidebar catalog (chairs, lamps, tables, beds) onto the grid canvas.</li>
+        <li><strong>Interactive Controls:</strong> Tap any furniture item on canvas to rotate it 45° or remove it.</li>
+        <li><strong>Add 3D Items:</strong> Click any 3D item on the right sidebar to drop an interactive 3D model directly onto the floor plan.</li>
+        <li><strong>Wall Paint Customizer:</strong> Choose wall colors from the palette to instantly change room ambience.</li>
+      </ul>
+
+      <h3>2. In View AR (Real Room View)</h3>
+      <ul style="padding-left: 20px; font-size: 0.95rem; color: #334155; margin-bottom: 15px;">
+        <li><strong>Activate Camera:</strong> Tap the <em>"📷 Turn On Room Camera"</em> button on your phone and tap <em>"Allow"</em> when prompted.</li>
+        <li><strong>Flip Camera:</strong> Use the refresh icon in the header to switch between rear (room) and front cameras.</li>
+        <li><strong>3D Angle Drawer:</strong> Adjust Pitch (X), Yaw (Y), and Roll (Z) sliders or use presets (Front, Top 90°, Side 90°, Floor Flat).</li>
+        <li><strong>In View AR in Real Room:</strong> Tap <em>"📱 In View AR (Real Room)"</em> to trigger WebXR or Scene Viewer for real-world plane tracking and scaling.</li>
+        <li><strong>Take Snapshots:</strong> Tap the camera icon in the top right to save snapshots of your designs.</li>
+      </ul>
+
+      <h3>3. Designer Marketplace</h3>
+      <p>Clients can post room consultation requests with photos and budgets; interior designers can accept projects and submit customized 3D design proposals.</p>
+    </section>
+
+    <section>
+      <h2>5. Quick Troubleshooting Matrix</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Problem</th>
+            <th>Root Cause</th>
+            <th>Solution</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Camera doesn't turn on / shows simulated photo</td>
+            <td>Opened site using plain HTTP (e.g. <code>http://10.235.209.3:5173</code>), which blocks <code>getUserMedia</code>.</td>
+            <td>Use the secure HTTPS tunnel link (<code>https://...trycloudflare.com</code>) and click "Allow" on camera permissions.</td>
+          </tr>
+          <tr>
+            <td>3D Model appears black or takes long to load</td>
+            <td>Large 3D GLB file size over slow mobile connection.</td>
+            <td>Select lightweight models like <em>Kitchen Mixer</em> or <em>Geo Planter</em>, or allow a few seconds to cache.</td>
+          </tr>
+          <tr>
+            <td>"Vite 403 Forbidden" when opening tunnel</td>
+            <td>Vite blocks unrecognized host headers by default.</td>
+            <td>Resolved by setting <code>allowedHosts: true</code> in <code>vite.config.js</code>.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <footer>
+      SnapEDesign Interior Design Studio • Project Documentation & Reference Guide • Generated 2026
+    </footer>
+  </div>
+
+</body>
+</html>
